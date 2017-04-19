@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
+import { Rider } from './riders/shared/rider';
 
-export class Rider {
-  id: number;
-  name: string;
-  miles: number;
-};
 
 const RIDERS: Rider[] = [
   { id: 0, name: 'Henry Winn', miles: 0 },
