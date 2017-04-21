@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Rider } from './shared/rider';
+import { Rider } from '../rider';
 
 @Component({
   selector: 'rider-profile',

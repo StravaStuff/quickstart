@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
-import { Rider } from './riders/shared/rider';
+import { Component, OnInit } from '@angular/core';
 
-
-const RIDERS: Rider[] = [
-  { id: 0, name: 'Henry Winn', miles: 0 },
-  { id: 1, name: 'Peyton Zeller-Av', miles: 0 }
-];
+import { Rider } from './riders/rider';
+import { RiderService } from  './riders/services/rider.service'
 
 @Component({
   selector: 'my-app',
   template: `<h1>{{title}}</h1>
               <ul class="riders">
-              <li *ngFor="let rider of allRiders">
+              <li *ngFor="let rider of riders">
                 <span class="badge">{{rider.id}}</span> {{rider.name}} {{rider.miles}}
               </li>
              </ul>`,
@@ -63,10 +59,22 @@ const RIDERS: Rider[] = [
        margin-right: .8em;
        border-radius: 4px 0 0 4px;
      }
-   `]
+   `],
+   providers: [RiderService]
 
 })
-export class AppComponent  {
+export class AppComponent implements OnInit {
   title =  'Riders';
-  allRiders = RIDERS;
+  riders: Rider[];
+
+  constructor(private riderService: RiderService) { }
+
+  getRiders(): void {
+    this.riders = this.riderService.getRiders();
+  }
+
+  ngOnInit(): void {
+    this.getRiders();
+  }
+
 }
