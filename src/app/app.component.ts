@@ -66,15 +66,18 @@ import { RiderService } from  './riders/services/rider.service'
 export class AppComponent implements OnInit {
   title =  'Riders';
   riders: Rider[];
+  selectedRider: Rider; 
 
   constructor(private riderService: RiderService) { }
 
   getRiders(): void {
-    this.riders = this.riderService.getRiders();
+    this.riderService.getRiders().then(riders => this.riders = riders);
   }
-
   ngOnInit(): void {
     this.getRiders();
   }
 
+  onSelect(rider: Rider): void {
+    this.selectedRider = rider;
+  }
 }

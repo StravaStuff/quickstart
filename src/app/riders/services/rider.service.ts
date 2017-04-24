@@ -5,7 +5,7 @@ import { RIDERS } from '../constants/riders.constant'
 
 @Injectable()
 export class RiderService {
-  getRiders(): Rider[] {
-    return RIDERS;
+  getRiders(): Promise<Rider[]> {
+    return Promise.resolve(RIDERS);
   }
 }
