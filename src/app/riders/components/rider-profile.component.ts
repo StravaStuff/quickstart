@@ -4,11 +4,7 @@ import { Rider } from '../rider';
 
 @Component({
   selector: 'rider-profile',
-  template:
-  `<div *ngIf="rider">
-      <h2>{{rider.name}} details!</h2>
-      <div><label>id: </label>{{rider.id}}</div>
-  </div>`
+  templateUrl: `../templates/rider-profile.component.html`
 })
 export class RiderProfileComponent {
   rider: Rider;
