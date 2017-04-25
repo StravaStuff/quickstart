@@ -24,4 +24,8 @@ export class RiderProfileComponent implements OnInit {
       .switchMap((params: Params) => this.riderService.getRider(+params['id']))
       .subscribe(rider => this.rider = rider);
   }
+
+  goToRiderList(): void {
+    this.location.back();
+  }
 }

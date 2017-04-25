@@ -9,8 +9,7 @@ import { RiderService } from  '../../riders/services/rider.service'
   template: `<h1>{{title}}</h1>
               <ul class="riders">
               <li *ngFor="let rider of riders"
-                [class.selected]="rider === selectedRider"
-                (click)="onSelect(rider)">
+                (click)="goToRiderProfile(rider)">
                 <span class="badge">{{rider.id}}</span> {{rider.name}} {{rider.miles}}
               </li>
              </ul>`,
@@ -69,7 +68,6 @@ import { RiderService } from  '../../riders/services/rider.service'
 export class RiderComponent implements OnInit {
   title =  'Riders';
   riders: Rider[];
-  selectedRider: Rider; 
 
   constructor(private router: Router,
   private riderService: RiderService) { }
@@ -77,20 +75,12 @@ export class RiderComponent implements OnInit {
   getRiders(): void {
     this.riderService.getRiders().then(riders => this.riders = riders);
   }
+  
   ngOnInit(): void {
     this.getRiders();
   }
 
-  onSelect(rider: Rider): void {
-      console.log(rider);
-      
-    this.selectedRider = rider;
-    //TODO 
-    // go to detail
-    this.router.navigate(['/profile', this.selectedRider.id]);
-  }
-
-    gotoDetail(): void {
-    this.router.navigate(['/profile', this.selectedRider.id]);
+  goToRiderProfile(rider: Rider): void {
+    this.router.navigate(['/profile', rider.id]);
   }
 }

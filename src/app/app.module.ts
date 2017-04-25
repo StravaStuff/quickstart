@@ -13,6 +13,8 @@ import { RiderService } from './riders/services/rider.service'
   imports:      [ BrowserModule, 
   FormsModule,
   RouterModule.forRoot([
+  { path: '', redirectTo: '/riders', pathMatch: 'full' },
+  { path: 'riders',  component: RiderComponent },
   {
     path: 'profile/:id',
     component: RiderProfileComponent
