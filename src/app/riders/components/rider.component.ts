@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Rider } from '../rider';
-import { RiderService } from  '../services/rider.service'
+import { RiderService } from  '../../riders/services/rider.service'
 
 @Component({
   selector: 'my-riders',
   template: `<h1>{{title}}</h1>
               <ul class="riders">
-              <li *ngFor="let rider of riders">
+              <li *ngFor="let rider of riders"
+                [class.selected]="rider === selectedRider"
+                (click)="onSelect(rider)">
                 <span class="badge">{{rider.id}}</span> {{rider.name}} {{rider.miles}}
               </li>
              </ul>`,
@@ -68,7 +71,8 @@ export class RiderComponent implements OnInit {
   riders: Rider[];
   selectedRider: Rider; 
 
-  constructor(private riderService: RiderService) { }
+  constructor(private router: Router,
+  private riderService: RiderService) { }
 
   getRiders(): void {
     this.riderService.getRiders().then(riders => this.riders = riders);
@@ -78,6 +82,15 @@ export class RiderComponent implements OnInit {
   }
 
   onSelect(rider: Rider): void {
+      console.log(rider);
+      
     this.selectedRider = rider;
+    //TODO 
+    // go to detail
+    this.router.navigate(['/profile', this.selectedRider.id]);
+  }
+
+    gotoDetail(): void {
+    this.router.navigate(['/profile', this.selectedRider.id]);
   }
 }

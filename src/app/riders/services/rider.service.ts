@@ -8,4 +8,9 @@ export class RiderService {
   getRiders(): Promise<Rider[]> {
     return Promise.resolve(RIDERS);
   }
+
+  getRider(id: number): Promise<Rider> {
+  return this.getRiders()
+              .then(riders => riders.find(rider => rider.id === id));
+}
 }
